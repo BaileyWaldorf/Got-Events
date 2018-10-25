@@ -6,7 +6,7 @@ class Header extends Component {
 
     render() {
         return (
-            <Navbar inverse="inverse" collapseOnSelect="collapseOnSelect">
+            <Navbar inverse={true} collapseOnSelect="collapseOnSelect">
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#brand">Got Events?</a>

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .App-header {
@@ -15,4 +16,29 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.eventsContainer {
+    padding: 30px;
+    padding-top: 80px;
+    background-color: #353a44;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 50vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.eventCard {
+    border-width: 1px;
+    border-color: black;
+    background-color: #2d323a;
+    padding: 20px;
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar {
+    margin-bottom: 0px;
 }
