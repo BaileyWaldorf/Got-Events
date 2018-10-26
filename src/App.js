@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
-import RSOs from './containers/RSOs';
-import EventsContainer from './containers/EventsContainer';
+import Router from './Router';
 
 class App extends Component {
 
@@ -10,9 +9,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header/>
-                <EventsContainer />
-                {/* <EventInfoContainer /> */}
-                {/* <RSOs /> */}
+                <Router />
             </div>
         );
     }

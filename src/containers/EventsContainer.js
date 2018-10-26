@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Event from '../components/Event';
+import EventInfoContainer from './EventInfoContainer';
 
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 const date = "April 20th, 2019"
@@ -39,31 +40,33 @@ export default class EventsContainer extends Component {
         // .then(response => (this.setState({RSOEvents: response}, () => {console.log(this.state.RSOEvents)})))
     }
 
-    showEventInfo = () => {
-        console.log("event clicked!");
-        return;
-    }
+    const renderEventInfo = (event) => (
+        <div>
+            
+            <EventInfoContainer event={event} />
+        </div>
+    )
 
     render() {
         return (
             <div className="eventsContainer">
                 {this.state.showPublicEvents
                     ? this.state.publicEvents.map(event =>
-                    <Event key={event} event={event} onClick={() => {console.log("clicked")}} />
+                    <Event key={event.name} event={event} click={() => {this.renderEventInfo(event)}} />
                     )
                     : null
                 }
 
                 {this.state.showPrivateEvents
                     ? this.state.privateEvents.map(event =>
-                    <Event key={event} event={event} click={() => {console.log("clcikeddd")}} />
+                    <Event key={event.name} event={event} click={this.showEventInfo(event)} />
                     )
                     : null
                 }
 
                 {this.state.showRSOEvents
                     ? this.state.RSOEvents.map(event =>
-                    <Event key={event} event={event} onClick={this.showEventInfo} />
+                    <Event key={event.name} event={event} click={this.showEventInfo(event)} />
                     )
                     : null
                 }

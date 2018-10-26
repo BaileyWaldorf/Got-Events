@@ -61,6 +61,18 @@
     color: white;
 }
 
+.event-info-container {
+    margin-top: 52px;
+    background-color: #FFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    width: 50vw;
+    height: calc(100vh - 52px);
+    overflow: auto;
+}
+
 .navbar {
     margin-bottom: 0px;
 }
