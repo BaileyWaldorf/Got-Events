@@ -18,19 +18,17 @@
   color: #61dafb;
 }
 
-.eventsContainer {
-    margin-top: 52px;
+.events-container {
     background-color: #252930;
     position: absolute;
-    top: 0;
     z-index: -1;
-    width: 50vw;
+    width: 50%;
     height: calc(100vh - 52px);
     overflow: auto;
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 
 .eventCard {
@@ -62,15 +60,13 @@
 }
 
 .event-info-container {
-    margin-top: 52px;
-    background-color: #FFF;
+    background-color: #2d323a;
     position: absolute;
-    top: 0;
     right: 0;
     z-index: -1;
-    width: 50vw;
+    width: 50%;
     height: calc(100vh - 52px);
-    overflow: auto;
+    overflow: hidden;
 }
 
 .navbar {

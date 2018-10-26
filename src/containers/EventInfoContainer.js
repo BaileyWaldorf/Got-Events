@@ -9,13 +9,12 @@ export default class EventInfoContainer extends Component {
     }
 
     render() {
-        console.log("made it")
+        let state = this.props.state;
         return (
             <div className="event-info-container">
-                {console.log("hello")}
-                {this.props.event.name}
+                {state.selected == null ? null : state.selected.name}
                 <br />
-                {this.props.event.description}
+                {state.selected == null ? null : state.selected.description}
             </div>
         );
     }
