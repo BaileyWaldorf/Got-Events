@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  color: white;
+  color: #CCC;
 }
 
 .App-header {
@@ -19,24 +19,46 @@
 }
 
 .eventsContainer {
-    padding: 30px;
-    padding-top: 80px;
-    background-color: #353a44;
+    margin-top: 52px;
+    background-color: #252930;
     position: absolute;
     top: 0;
     z-index: -1;
     width: 50vw;
-    height: 100vh;
+    height: calc(100vh - 52px);
     overflow: auto;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 .eventCard {
-    border-width: 1px;
+    border-width: 0px;
+    border-bottom-width: 1px;
     border-color: black;
-    background-color: #2d323a;
+    background-color: #252930;
     padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     z-index: 1;
+}
+
+.eventCard:focus {
+    outline-width: 0px;
+    color: white;
+    background-color: #2d323a;
+}
+
+.eventCard:hover {
+    background-color: #2d323a;
+    color: white;
+}
+
+.eventCard:active {
+    background-color: #272b33;
+    color: white;
 }
 
 .navbar {

@@ -1,12 +1,23 @@
 import React, {Component} from 'react';
 import Event from '../components/Event';
 
+const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+const date = "April 20th, 2019"
+
 export default class EventsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             publicEvents: [
-                {name: "poop", description: "a description"},
+                {name: "Event Title 1", description: description, date: date},
+                {name: "Event Title 2", description: description, date: date},
+                {name: "Event Title 3", description: description, date: date},
+                {name: "Event Title 4", description: description, date: date},
+                {name: "Event Title 5", description: description, date: date},
+                {name: "Event Title 6", description: description, date: date},
+                {name: "Event Title 7", description: description, date: date},
+                {name: "Event Title 8", description: description, date: date},
+                {name: "Event Title 9", description: description, date: date},
             ],
             privateEvents: [],
             RSOEvents: [],

@@ -15,7 +15,6 @@ export default class RSOs extends Component {
     render() {
         return (
             <div>
-                Hello World
                 <ul>
                     {this.state.RSOs.map(RSO => <ul key={RSO.RSO_ID}>
                         <h2>{RSO.NAME}</h2>

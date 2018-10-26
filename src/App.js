@@ -12,7 +12,7 @@ class App extends Component {
                 <Header/>
                 <EventsContainer />
                 {/* <EventInfoContainer /> */}
-                <RSOs />
+                {/* <RSOs /> */}
             </div>
         );
     }
