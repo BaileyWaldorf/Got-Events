@@ -40,19 +40,12 @@ export default class EventsContainer extends Component {
         // .then(response => (this.setState({RSOEvents: response}, () => {console.log(this.state.RSOEvents)})))
     }
 
-    const renderEventInfo = (event) => (
-        <div>
-            
-            <EventInfoContainer event={event} />
-        </div>
-    )
-
     render() {
         return (
             <div className="eventsContainer">
                 {this.state.showPublicEvents
                     ? this.state.publicEvents.map(event =>
-                    <Event key={event.name} event={event} click={() => {this.renderEventInfo(event)}} />
+                    <Event key={event.name} event={event} click={() => {console.log("hello")}} />
                     )
                     : null
                 }
