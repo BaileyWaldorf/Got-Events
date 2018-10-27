@@ -72,3 +72,53 @@
 .navbar {
     margin-bottom: 0px;
 }
+
+.LoginPage {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 52px);
+    width: 100%;
+    align-items: center;
+}
+
+.LoginInput {
+    margin-top: 5%;
+    border-color: black;
+    background-color: #252930;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 220px;
+    height: 35px;
+    padding: 10px;
+    outline-width: 0;
+    color: #CCC;
+}
+
+.LoginContainer {
+    opacity: 10%;
+    margin-top: 7%;
+    height: 100%;
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(66, 73, 82);
+    border-radius: 20px;
+}
+
+.LoginButton {
+    margin-top: 10%;
+    border: tomato;
+    background-color: #daa520;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 220px;
+    height: 35px;
+    outline-width: 0;
+    align-content: center;
+}
+
+.GotEventsTag {
+    color: white;
+    margin-top: 10%;
+}
