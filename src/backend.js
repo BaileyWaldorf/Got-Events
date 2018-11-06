@@ -25,5 +25,5 @@ app.get('/RSOs', function (req, res) {
 });
 // Start the server
 app.listen(3001, () => {
- console.log('Go to http://localhost:3001/RSOs to see RSOs');
+    console.log('Go to http://localhost:3001/RSOs to see RSOs');
 });
