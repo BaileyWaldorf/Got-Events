@@ -12,9 +12,7 @@ export default class EventInfoContainer extends Component {
         let state = this.props.state;
         return (
             <div className="event-info-container">
-                {state.selected == null ? null : state.selected.name}
-                <br />
-                {state.selected == null ? null : state.selected.description}
+                {state.publicEvents[state.selectedEvent].name}
             </div>
         );
     }
