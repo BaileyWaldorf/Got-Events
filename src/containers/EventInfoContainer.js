@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MapContainer from '../components/MapContainer';
 
 export default class EventInfoContainer extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class EventInfoContainer extends Component {
         return (
             <div className="event-info-container">
                 {state.publicEvents[state.selectedEvent].name}
+                <MapContainer />
             </div>
         );
     }
