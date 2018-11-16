@@ -6,29 +6,42 @@ let latitude;
 let longitude;
 
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey("AIzaSyBRVeBqXwkWPREXuMBFtX3cUxiNKyYGzCc");
+Geocode.setApiKey("AIzaSyBbHGz9WI9s7eneKyyCGxsP6bTMfc70ofM");
 
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
 
-// Get latidude & longitude from address.
-Geocode.fromAddress("Eiffel Tower").then(
-    response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        latitude = lat;
-        longitude = lng;
-    },
-    error => {
-        console.error(error);
-    }
-);
-
 export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+      latitude: 0.0,
+      longitude: 0.0,
+      address:this.props.address
+    }
+
+    this.onMapLoad();
+  }
+
+  onMapLoad = (props) => {
+      Geocode.fromAddress(this.state.address).then(
+        response => {
+            const { lat, lng } = response.results[0].geometry.location;
+            this.setState({
+              latitude: lat,
+              longitude: lng,
+              });
+        },
+        error => {
+            console.error(error);
+        }
+      );
+    }
+
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -51,8 +64,8 @@ export class MapContainer extends Component {
       <Map google={this.props.google}
           onClick={this.onMapClicked}>
         <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-
+                name={this.props.address} />
+      
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
@@ -66,5 +79,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyDPf6W6tf0ixiz8ssXTS-RfaoXK4Q-HE50')
+  apiKey: ('AIzaSyBbHGz9WI9s7eneKyyCGxsP6bTMfc70ofM')
 })(MapContainer)
