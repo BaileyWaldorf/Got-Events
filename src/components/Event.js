@@ -1,13 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 const Event = (props) => (
     <button className="eventCard" onClick={() => {props.selectEvent(props.index)}}>
-        <h4>
-            <span style={{float: "left"}}>{props.event.name}</span>
-            <span style={{float: "right"}}>{props.event.date}</span>
-        </h4>
-        <br /><br />
-        <p style={{textAlign: "left"}}>{props.event.description}</p>
+        <div>
+            <h4>
+                {props.event.title.length > 80
+                    ? <span style={{float: "left"}}>{props.event.title.slice(0, 80)}...</span>
+                    : <span style={{float: "left"}}>{props.event.title}</span>}
+                <span style={{float: "right"}}>{props.event.starts.slice(0, -15)}</span>
+            </h4>
+            <br /><br />
+            <div style={{float: "left"}}>{props.event.location}</div>
+            <p style={{float: "right"}}>Category: {props.event.category}</p>
+        </div>
     </button>
 );
 

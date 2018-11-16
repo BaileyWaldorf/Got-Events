@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
+import EventInfoHeader from '../components/EventInfoHeader';
 
-export default class EventInfoContainer extends Component {
+export default class EventInfoContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +13,10 @@ export default class EventInfoContainer extends Component {
         let state = this.props.state;
         return (
             <div className="event-info-container">
-                {state.publicEvents[state.selectedEvent].name}
+                {state.events[this.props.index] === undefined
+                    ? null
+                    : <EventInfoHeader event={state.events[this.props.index]}/>
+                }
             </div>
         );
     }

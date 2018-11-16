@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Event from '../components/Event';
 import EventsContainer from './EventsContainer';
 import EventInfoContainer from './EventInfoContainer';
 
@@ -27,6 +26,7 @@ export default class MyEventsContainer extends Component {
             showPrivateEvents: false,
             showRSOEvents: false,
             selectedEvent: 0,
+            events: []
         };
 
         // fetch('http://localhost:3001/publicevents')
@@ -40,6 +40,16 @@ export default class MyEventsContainer extends Component {
         // fetch('http://localhost:3001/RSOevents')
         // .then(response => response.text())
         // .then(response => (this.setState({RSOEvents: response}, () => {console.log(this.state.RSOEvents)})))
+    }
+
+    componentDidMount() {
+        console.log("myeventscontainer mounted")
+        fetch('https://events.ucf.edu/upcoming/feed.json')
+        .then(response => response.json())
+        .then(response => (this.setState({events: response}, () => {console.log(this.state.events)})))
+        .catch(e => {
+            console.log(e)
+        })
     }
 
     selectEvent = (index) => {
