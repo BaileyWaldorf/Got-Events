@@ -96,8 +96,8 @@
 
 .LoginContainer {
     opacity: 10%;
-    margin-top: 7%;
-    height: 100%;
+    margin-top: 3%;
+    height: 90%;
     width: 370px;
     display: flex;
     flex-direction: column;
@@ -109,7 +109,7 @@
 .LoginButton {
     margin-top: 10%;
     border: tomato;
-    background-color: #daa520;
+    background-color: lightslategray;
     border-width: 1px;
     border-radius: 10px;
     width: 220px;
@@ -122,3 +122,16 @@
     color: white;
     margin-top: 10%;
 }
+
+.InputBox {
+    border-color: black;
+    background-color: #252930;
+    border-width: 1px;
+    border-radius: 10px;
+    /*width: 220px;*/
+    height: 35px;
+    padding: 10px;
+    outline-width: 0;
+    color: #CCC;
+}
+

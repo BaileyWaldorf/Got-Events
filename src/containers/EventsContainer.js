@@ -10,12 +10,12 @@ export default class EventsContainer extends Component {
         super(props);
         this.state = {
             publicEvents: [
-                {name: "Event Title 1", description: description, date: date},
-                {name: "Event Title 2", description: description, date: date},
-                {name: "Event Title 3", description: description, date: date},
-                {name: "Event Title 4", description: description, date: date},
-                {name: "Event Title 5", description: description, date: date},
-                {name: "Event Title 6", description: description, date: date},
+                {name: "Comedy Knight (Past due)", description: "Unfortunately we dont have anyone good this year, like Adam Devine last year. This year we have insert_name_here comedian! Come for good laughs!", date: "November 5th 2018"},
+                {name: "Knights got talent", description: "Come to show off your special and unique talent, like singing, dancing, and much more! Tons of fun people will be there, sharing their talents too!", date: "November 7th 2018 "},
+                {name: "Concert Knight", description: "A$AP Fergie will be here! You all know him of course! He has famous music, we swear!", date: "November 8th 2018"},
+                {name: "Spirit Splash", description: "Come to the Reflection Pond for the famous Spirit Splash! There is music, splashing, water, a fountain, and best of all, RUBBER DUCKIES!", date: "November 9th 2018"},
+                {name: "Fireworks extraveganza", description: "Awesome fireworks will be blown up in the sky! It is better than Magic Kingdom's fireworks show!", date: "November 9th 2018"},
+                {name: "Football game", description: "UCF vs. NAVY. Kick off at 12:03 pm. Be there or be sqaure!", date: "November 10th 2018"},
                 {name: "Event Title 7", description: description, date: date},
                 {name: "Event Title 8", description: description, date: date},
                 {name: "Event Title 9", description: description, date: date},
