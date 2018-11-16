@@ -76,7 +76,7 @@ export default class Login extends Component {
         return (
             <div>
                 <div>
-                    <Header></Header>
+                    
                     <div className="LoginPage">
                         <div className="LoginContainer">
                             <h1 style={{ color: "white", marginTop: '5%', paddingBottom: '15%' }}>Register</h1>

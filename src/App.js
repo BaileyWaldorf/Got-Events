@@ -2,12 +2,29 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Router from './Router';
+import { Redirect } from 'react-router';
 import Login from './components/Login'                  //gud
 import CreateEvents from './components/CreateEvents'
-import Register from './components/Register'            
+import Register from './components/Register'
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            MainPage: false,
+            LoginPage: true,
+            RegisterPage: false
+        }
+    }
+
+    GoToLogin = () => {
+        this.setState({LoginPage: true, RegisterPage:false, MainPage:false})
+    }
+
+    GoToRegister = () => {
+        this.setState({LoginPage: false, RegisterPage:true, MainPage:false})
+    }
 
     render() {
         // return (
@@ -21,13 +38,29 @@ class App extends Component {
         //         <div style={{marginLeft:"50%"}}>Rating: 5.0/5.0</div>
         //         <div style={{marginLeft:"50%"}}>Description: Come to the Reflection Pond for the famous Spirit Splash!</div>
         //         <div style={{marginLeft:"50%"}}>There is music, splashing, water, a fountain, and best of all, RUBBER DUCKIES!</div>
-                
-                
+
+
         //     </div>
         // );
-        return (
-            <CreateEvents></CreateEvents>
-        );
+
+
+        if (this.state.RegisterPage === true) {
+            return (
+                <div>
+                    <Redirect push to="/Register"></Redirect>
+                    <Register ></Register>
+                </div>
+            );
+        }
+
+        if (this.state.LoginPage === true) {
+            return (
+                <div>
+                    <Redirect push to="/Login"></Redirect>
+                    <Login linkRegister={this.GoToRegister}></Login>
+                </div>
+            );
+        }
     }
 
     // render() {
