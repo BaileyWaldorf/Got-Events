@@ -6,7 +6,7 @@ class Header extends Component {
 
     render() {
         return (
-            <Navbar inverse={true} collapseOnSelect="collapseOnSelect">
+            <Navbar inverse={true} collapseOnSelect={true}>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#brand">Got Events?</a>
@@ -24,11 +24,11 @@ class Header extends Component {
                             <MenuItem eventKey={3.1}>My Events</MenuItem>
                             <MenuItem eventKey={3.2}>My Organizations</MenuItem>
                             <MenuItem eventKey={3.3}>Account</MenuItem>
-                            <MenuItem divider="divider"/>
+                            <MenuItem divider={true}/>
                             <MenuItem eventKey={3.3}>Sign Out</MenuItem>
                         </NavDropdown>
                     </Nav>
-                    <Nav pullRight="pullRight">
+                    <Nav pullRight={true}>
                         <NavItem eventKey={1} href="#">
                             Login
                         </NavItem>
