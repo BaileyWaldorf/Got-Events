@@ -1,10 +1,12 @@
+import React, {Component} from 'react';
 import Geocode from "react-geocode";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 let latitude;
 let longitude;
+
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey("AIzaSyDPf6W6tf0ixiz8ssXTS-RfaoXK4Q-HE50");
+Geocode.setApiKey("AIzaSyBRVeBqXwkWPREXuMBFtX3cUxiNKyYGzCc");
 
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
@@ -64,5 +66,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: (AIzaSyDPf6W6tf0ixiz8ssXTS-RfaoXK4Q-HE50)
+  apiKey: ('AIzaSyDPf6W6tf0ixiz8ssXTS-RfaoXK4Q-HE50')
 })(MapContainer)
