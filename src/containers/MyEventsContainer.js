@@ -26,7 +26,7 @@ export default class MyEventsContainer extends Component {
             showPublicEvents: true,
             showPrivateEvents: false,
             showRSOEvents: false,
-            selectedEvent: null,
+            selectedEvent: 0,
         };
 
         // fetch('http://localhost:3001/publicevents')
@@ -42,15 +42,15 @@ export default class MyEventsContainer extends Component {
         // .then(response => (this.setState({RSOEvents: response}, () => {console.log(this.state.RSOEvents)})))
     }
 
-    selectEvent = (event) => {
-        this.setState({selectedEvent: event})
+    selectEvent = (index) => {
+        this.setState({selectedEvent: index})
     }
 
     render() {
         return (
             <div className="my-events-container">
                 <EventsContainer state={this.state} selectEvent={this.selectEvent}/>
-                <EventInfoContainer state={this.state}/>
+                <EventInfoContainer state={this.state} index={this.state.selectedEvent}/>
             </div>
         );
     }

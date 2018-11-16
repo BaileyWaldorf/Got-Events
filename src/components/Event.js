@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 
-export default class RSOs extends Component {
-    render() {
-        return (
-            <button className="eventCard" onClick={this.props.click}>
-                <h4>
-                    <span style={{float: "left"}}>{this.props.event.name}</span>
-                    <span style={{float: "right"}}>{this.props.event.date}</span>
-                </h4>
-                <br /><br />
-                <p style={{textAlign: "left"}}>{this.props.event.description}</p>
-            </button>
-        );
-    }
-}
+const Event = (props) => (
+    <button className="eventCard" onClick={() => {props.selectEvent(props.index)}}>
+        <h4>
+            <span style={{float: "left"}}>{props.event.name}</span>
+            <span style={{float: "right"}}>{props.event.date}</span>
+        </h4>
+        <br /><br />
+        <p style={{textAlign: "left"}}>{props.event.description}</p>
+    </button>
+);
+
+export default Event;

@@ -6,48 +6,27 @@ const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, se
 const date = "April 20th, 2019"
 
 export default class EventsContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            publicEvents: [
-                {name: "Event Title 1", description: description, date: date},
-                {name: "Event Title 2", description: description, date: date},
-                {name: "Event Title 3", description: description, date: date},
-                {name: "Event Title 4", description: description, date: date},
-                {name: "Event Title 5", description: description, date: date},
-                {name: "Event Title 6", description: description, date: date},
-                {name: "Event Title 7", description: description, date: date},
-                {name: "Event Title 8", description: description, date: date},
-                {name: "Event Title 9", description: description, date: date},
-            ],
-            privateEvents: [],
-            RSOEvents: [],
-            showPublicEvents: true,
-            showPrivateEvents: false,
-            showRSOEvents: false,
-        };
-    }
 
     render() {
         return (
             <div className="events-container">
-                {this.state.showPublicEvents
-                    ? this.state.publicEvents.map(event =>
-                    <Event key={event.name} event={event} click={() => {console.log("hello")}} />
+                {this.props.state.showPublicEvents
+                    ? this.props.state.publicEvents.map((event, index) =>
+                    <Event key={event.name} event={event} index={index} selectEvent={this.props.selectEvent} />
                     )
                     : null
                 }
 
-                {this.state.showPrivateEvents
-                    ? this.state.privateEvents.map(event =>
-                    <Event key={event.name} event={event} click={this.showEventInfo(event)} />
+                {this.props.state.showPrivateEvents
+                    ? this.props.state.privateEvents.map(event =>
+                    <Event key={event.name} event={event} selectEvent={this.props.selectEvent} />
                     )
                     : null
                 }
 
-                {this.state.showRSOEvents
-                    ? this.state.RSOEvents.map(event =>
-                    <Event key={event.name} event={event} click={this.showEventInfo(event)} />
+                {this.props.state.showRSOEvents
+                    ? this.props.state.RSOEvents.map(event =>
+                    <Event key={event.name} event={event} selectEvent={this.props.selectEvent} />
                     )
                     : null
                 }
