@@ -14,7 +14,7 @@ export default class EventInfoContainer extends Component {
         return (
             <div className="event-info-container">
                 {state.publicEvents[state.selectedEvent].name}
-                <MapContainer address="University of Central Florida"/>
+                <MapContainer address={state.publicEvents[state.selectedEvent].address}/>
             </div>
         );
     }

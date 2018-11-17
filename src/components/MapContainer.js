@@ -25,14 +25,24 @@ export class MapContainer extends Component {
     }    
   }
 
-  componentWillMount() {
-    this.onMapLoad();
+  componentWillReceiveProps(nextProps)
+  {
+    if(nextProps.address != this.props.address)
+    {
+      this.setState({address:nextProps.address});
+      this.onMapLoad(nextProps);
+    }
+  }
+
+  componentDidMount() {
+    this.onMapLoad(this.props);
   }
   
   onMapLoad = (props) => {
-      Geocode.fromAddress(this.state.address).then(
+      Geocode.fromAddress(this.props.address).then(
         response => {
             const { lat, lng } = response.results[0].geometry.location;
+
             this.setState({
               latitude: lat,
               longitude: lng,
@@ -61,6 +71,8 @@ export class MapContainer extends Component {
   };
 
   render() {
+    // console.log(`lat: ${this.state.latitude} long: ${this.state.longitude}`);
+
     return (
       <Map google={this.props.google}
           center={{
