@@ -19,14 +19,16 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      latitude: 0.0,
-      longitude: 0.0,
+      latitude: 0,
+      longitude: 0,
       address:this.props.address
-    }
-
-    this.onMapLoad();
+    }    
   }
 
+  componentWillMount() {
+    this.onMapLoad();
+  }
+  
   onMapLoad = (props) => {
       Geocode.fromAddress(this.state.address).then(
         response => {
@@ -41,7 +43,6 @@ export class MapContainer extends Component {
         }
       );
     }
-
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -62,9 +63,16 @@ export class MapContainer extends Component {
   render() {
     return (
       <Map google={this.props.google}
-          onClick={this.onMapClicked}>
+          center={{
+            lat: this.state.latitude,
+            lng: this.state.longitude
+          }}
+          zoom={15}
+          onClick={this.onMapClicked}
+      >
         <Marker onClick={this.onMarkerClick}
-                name={this.props.address} />
+                name={this.props.address} 
+                position={{lat: this.state.latitude, lng: this.state.longitude}}/>
       
         <InfoWindow
           marker={this.state.activeMarker}
