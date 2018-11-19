@@ -5,6 +5,8 @@ import Router from './Router';
 import Login from './components/Login'
 import CreateEvents from './components/CreateEvents'
 import Register from './components/Register'
+import Event from './components/Event'
+import JoinRSO from './components/JoinRSO.js'
 
 
 class App extends Component {
@@ -12,7 +14,7 @@ class App extends Component {
 
      render() {
          return (
-             <Register></Register>
+             <JoinRSO></JoinRSO>
          );
      }
 }
