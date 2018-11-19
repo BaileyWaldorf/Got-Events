@@ -40,17 +40,25 @@ export default class Login extends Component {
                 <Header></Header>
             <div className="LoginPage">
                 <div className="LoginContainer">
-                    <h1 style={{color:"white", marginTop:'5%', paddingBottom:'35%'}}>Got-Events</h1>
+                    <h1 style={{color:"white", marginTop:'5%', paddingBottom:'15%'}}>Register</h1>
                     <div>
-                        <input onChange={this.handleChangeLogin} className="LoginInput" placeholder="Login" type='text'></input>
+                        <input onChange={this.handleChangeLogin} className="LoginInput" placeholder="Username" type='text'></input>
                     </div>
                     <div>
                         <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Password" type='password'></input>
                     </div>
                     <div>
-                        <button onClick={this.handleSubmit}  className="LoginButton">Log In</button>
+                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Confirm Password" type='password'></input>
                     </div>
-                    <div style={{ color: 'white', paddingTop:'35%' }}>Don't have an account yet? {registerLink}</div>
+                    <div>
+                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="School"></input>
+                    </div>
+                    <div>
+                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="User Type "></input>
+                    </div>
+                    <div>
+                        <button onClick={this.handleSubmit}  className="LoginButton" style={{marginTop:"35%"}}>Register</button>
+                    </div>
                 </div>
             </div>
             </div>
