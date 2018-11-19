@@ -6,8 +6,8 @@ const Event = (props) => (
             <span style={{float: "left"}}>{props.event.name}</span>
             <span style={{float: "right"}}>{props.event.date}</span>
         </h4>
-        <br /><br />
-        <p style={{textAlign: "left"}}>{props.event.description}</p>
+        {/* <br /><br />
+        <p style={{textAlign: "left"}}>{props.event.description}</p> */}
     </button>
 );
 

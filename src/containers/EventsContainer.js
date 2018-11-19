@@ -12,7 +12,7 @@ export default class EventsContainer extends Component {
             <div className="events-container">
                 {this.props.state.showPublicEvents
                     ? this.props.state.publicEvents.map((event, index) =>
-                    <Event key={event.name} event={event} index={index} selectEvent={this.props.selectEvent} />
+                    <Event key={event.name} event={event} index={index} selectEvent={this.props.selectEvent} date={this.props.state.date}/>
                     )
                     : null
                 }

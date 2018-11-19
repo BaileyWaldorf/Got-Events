@@ -13,7 +13,16 @@ export default class EventInfoContainer extends Component {
         let state = this.props.state;
         return (
             <div className="event-info-container">
-                {state.publicEvents[state.selectedEvent].name}
+                {"Event Name: " + state.publicEvents[state.selectedEvent].name}
+                <br></br>
+                <p style={{float:"left"}}>{"Description: " + state.publicEvents[state.selectedEvent].description}</p>
+                <br></br>
+                {"Date: " + state.publicEvents[state.selectedEvent].date + ",    "}
+                {"Time: " + state.publicEvents[state.selectedEvent].time}
+                <br></br>
+                {"Address: " + state.publicEvents[state.selectedEvent].address}
+                <br></br>
+                {"Rating: " + state.publicEvents[state.selectedEvent].rating + "/5"}
                 <MapContainer address="University of Central Florida"/>
             </div>
         );

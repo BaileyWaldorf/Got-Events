@@ -11,15 +11,13 @@ export default class MyEventsContainer extends Component {
         super(props);
         this.state = {
             publicEvents: [
-                {name: "Event Title 1", description: description, date: date},
-                {name: "Event Title 2", description: description, date: date},
-                {name: "Event Title 3", description: description, date: date},
-                {name: "Event Title 4", description: description, date: date},
-                {name: "Event Title 5", description: description, date: date},
-                {name: "Event Title 6", description: description, date: date},
-                {name: "Event Title 7", description: description, date: date},
-                {name: "Event Title 8", description: description, date: date},
-                {name: "Event Title 9", description: description, date: date},
+                { name: "Event Title 1", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 2", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 3", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 4", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 5", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 6", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 7", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
             ],
             privateEvents: [],
             RSOEvents: [],
