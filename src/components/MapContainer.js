@@ -71,7 +71,6 @@ export class MapContainer extends Component {
   };
 
   render() {
-    // console.log(`lat: ${this.state.latitude} long: ${this.state.longitude}`);
 
     return (
       <Map google={this.props.google}
