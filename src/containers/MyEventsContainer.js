@@ -53,6 +53,9 @@ export default class MyEventsContainer extends Component {
     }
 
     selectEvent = (index) => {
+        fetch("http://localhost:3001/insert-user?username=bailey&password=password&email=bwaldorf@knights.ucf.edu&university=UCF&u_type=0")
+        .then(res => res.JSON());
+        .then
         this.setState({selectedEvent: index})
     }
 
