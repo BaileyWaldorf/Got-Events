@@ -12,12 +12,12 @@ export default class MyEventsContainer extends Component {
         this.state = {
             publicEvents: [
                 { name: "Event Title 1", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 2", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 3", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 4", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 5", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 6", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
-                { name: "Event Title 7", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 2", description: description, date: date, address: "Eiffel Tower",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 3", description: description, date: date, address: "Statue of Librerty",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 4", description: description, date: date, address: "Disney World",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 5", description: description, date: date, address: "Universal Studios",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 6", description: description, date: date, address: "Chicago, Illinois",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 7", description: description, date: date, address: "New York City",  time: "1:00 PM", rating: 3 },
             ],
             privateEvents: [],
             RSOEvents: [],

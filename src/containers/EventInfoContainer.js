@@ -23,7 +23,8 @@ export default class EventInfoContainer extends Component {
                 {"Address: " + state.publicEvents[state.selectedEvent].address}
                 <br></br>
                 {"Rating: " + state.publicEvents[state.selectedEvent].rating + "/5"}
-                <MapContainer address="University of Central Florida"/>
+
+                <MapContainer address={state.publicEvents[state.selectedEvent].address}/>
             </div>
         );
     }
