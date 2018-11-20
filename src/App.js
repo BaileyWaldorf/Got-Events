@@ -8,6 +8,7 @@ import CreateEvents from './components/CreateEvents'
 import Register from './components/Register'
 import Event from './components/Event'
 import JoinRSO from './components/JoinRSO.js'
+import ProfilePage from './components/ProfilePage.js'
 
 
 class App extends Component {
@@ -20,13 +21,6 @@ class App extends Component {
         }
     }
 
-    GoToLogin = () => {
-        this.setState({LoginPage: true, RegisterPage:false, MainPage:false})
-    }
-
-    GoToRegister = () => {
-        this.setState({LoginPage: false, RegisterPage:true, MainPage:false})
-    }
 
     // render() {
         // return (
@@ -67,7 +61,7 @@ class App extends Component {
 
      render() {
          return (
-             <Register></Register>
+             <JoinRSO></JoinRSO>
          );
      }
 }

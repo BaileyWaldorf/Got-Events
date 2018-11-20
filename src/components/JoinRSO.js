@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import Header from './Header'
 
 export default class JoinRSO extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            rsoname: '',
+            username: this.props.username,
+            email: this.props.email,
+            university: this.props.university,
+            userType: this.props.userType,
             buttonEnabled: true,
-            authenticated: 'false'
+            authenticated: 'false',
+            rsoname: ''
         }
     }
 
