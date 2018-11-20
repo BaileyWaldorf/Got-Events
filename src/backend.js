@@ -114,7 +114,7 @@ app.post('/register', function(req, res){
     console.log('body is ', req.body);
 
     var query = `
-        INSERT INTO users (username, u_password, email, university, u_type)
+        INSERT INTO user (username, u_password, email, university, u_type)
         VALUES ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.university}', ${req.body.u_type});
     `;
 
@@ -198,8 +198,8 @@ app.post('/create-university', function(req, res){
     console.log('body is ', req.body);
 
     var query = `
-        INSERT INTO universities (name, location, description)
-        VALUES ('${req.body.name}', '${req.body.location}', '${req.body.description}');
+        INSERT INTO universities (name, location, description, num_of_students)
+        VALUES ('${req.body.name}', '${req.body.location}', '${req.body.description}', 1);
     `;
 
     connection.query(query, function(err, result) {

@@ -32,7 +32,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header authenticated={this.state.authenticated} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
-                <main>
+                <main style={{alignItems: 'center', justifyContent: 'center'}}>
                     <Switch>
                         <Route exact path="/" render={(props) => (
                             <MyEventsContainer {...props} state={this.state} />
