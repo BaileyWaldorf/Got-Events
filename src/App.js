@@ -34,19 +34,26 @@ class App extends Component {
                 <Header authenticated={this.state.authenticated} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
                 <main>
                     <Switch>
-                        <Route path="/" render={(props) => (
+                        <Route exact path="/" render={(props) => (
                             <MyEventsContainer {...props} state={this.state} />
                         )} />
                         <Route path="/my-events" render={(props) => (
                             <MyEventsContainer {...props} state={this.state} />
                         )} />
-                        <Route exact path='/my-events' component={MyEventsContainer}/>
-                        <Route path='/register' component={Register}/>
-                        <Route path='/profile' component={ProfilePage}/>
-                        <Route path='/join-rso' component={JoinRSO}/>
-                        <Route path='/create-event' component={CreateEvent}/>
                         <Route path="/login" render={(props) => (
                             <Login {...props} handleLogin={this.handleLogin} />
+                        )} />
+                        <Route path="/register" render={(props) => (
+                            <Register {...props} state={this.state} />
+                        )} />
+                        <Route path="/profile" render={(props) => (
+                            <ProfilePage {...props} state={this.state} />
+                        )} />
+                        <Route path="/join-rso" render={(props) => (
+                            <JoinRSO {...props} state={this.state} />
+                        )} />
+                        <Route path="/create-event" render={(props) => (
+                            <CreateEvent {...props} state={this.state} />
                         )} />
                     </Switch>
                 </main>
