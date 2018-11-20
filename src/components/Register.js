@@ -51,6 +51,21 @@ export default class Login extends Component {
         console.log("Clicked")
         //let temp_usrname = this.state.username;
         //let temp_passwrd = this.state.password;
+        if(this.state.userType == 0)
+        {
+          fetch('http://localhost:3001/create-university', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: this.state.school,
+              location: this.state.location,
+              description: this.state.description,
+            }),
+          });
+        }
 
         fetch('http://localhost:3001/register', {
           method: 'POST',
@@ -66,7 +81,6 @@ export default class Login extends Component {
             u_type: this.state.userType,
           }),
         });
-
         console.log("submit")
 
     }
