@@ -24,11 +24,11 @@ Geocode.fromAddress("Eiffel Tower").then(
 );
 
 export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+    state = {
+        showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {},
+    };
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
