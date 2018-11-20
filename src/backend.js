@@ -95,6 +95,7 @@ app.get('/get-comments', function (req, res) {
 
 // logs in a user
 app.get('/login', function (req, res) {
+    console.log("body: ", req.body)
     console.log("logging in user...");
     var query = `
         SELECT *
