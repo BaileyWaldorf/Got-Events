@@ -84,7 +84,7 @@ export class MapContainer extends Component {
         <Marker onClick={this.onMarkerClick}
                 name={this.props.address} 
                 position={{lat: this.state.latitude, lng: this.state.longitude}}/>
-      
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>

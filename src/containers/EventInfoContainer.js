@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
+import EventInfoHeader from '../components/EventInfoHeader';
 import MapContainer from '../components/MapContainer';
 
-export default class EventInfoContainer extends Component {
+export default class EventInfoContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,18 +14,29 @@ export default class EventInfoContainer extends Component {
         let state = this.props.state;
         return (
             <div className="event-info-container">
-                {"Event Name: " + state.publicEvents[state.selectedEvent].name}
-                <br></br>
-                <p style={{float:"left"}}>{"Description: " + state.publicEvents[state.selectedEvent].description}</p>
-                <br></br>
-                {"Date: " + state.publicEvents[state.selectedEvent].date + ",    "}
-                {"Time: " + state.publicEvents[state.selectedEvent].time}
-                <br></br>
-                {"Address: " + state.publicEvents[state.selectedEvent].address}
-                <br></br>
-                {"Rating: " + state.publicEvents[state.selectedEvent].rating + "/5"}
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : <EventInfoHeader event={state.events[state.selectedEvent]}/>
+                }
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : state.events[state.selectedEvent].title
+                }
 
-                <MapContainer address={state.publicEvents[state.selectedEvent].address}/>
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : console.log("Current address of selected: " + state.events[state.selectedEvent].location)
+                }
+
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : console.log("Current address of selected: " + state.selectedEvent)
+                }
+
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    :
+                    <MapContainer address={state.events[state.selectedEvent].location}/>}
             </div>
         );
     }

@@ -69,6 +69,13 @@
     overflow: hidden;
 }
 
+.event-info-header {
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
 .navbar {
     margin-bottom: 0px;
 }
