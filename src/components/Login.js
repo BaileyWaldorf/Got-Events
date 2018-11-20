@@ -50,7 +50,7 @@ export default class Login extends Component {
                     <div>
                         <button onClick={this.handleSubmit}  className="LoginButton">Log In</button>
                     </div>
-                    <div style={{ color: 'white', paddingTop:'35%' }}>Don't have an account yet? {registerLink}</div>
+                    <div onClick={this.props.linkRegister} style={{ color: 'white', paddingTop:'35%' }}>Don't have an account yet? {registerLink}</div>
                 </div>
             </div>
             </div>
