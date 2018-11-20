@@ -61,7 +61,7 @@ class App extends Component {
 
      render() {
          return (
-             <JoinRSO></JoinRSO>
+             <Login></Login>
          );
      }
 }

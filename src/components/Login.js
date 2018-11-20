@@ -8,7 +8,8 @@ export default class Login extends Component {
             username: '',
             password: '',
             buttonEnabled: true,
-            authenticated: 'false'
+            authenticated: 'false',
+            user: ""
         }
     }
 
@@ -23,12 +24,20 @@ export default class Login extends Component {
     handleSubmit = (event) => {
         //let temp_usrname = this.state.username;
         //let temp_passwrd = this.state.password;
+        console.log(this.state.username);
+        console.log(this.state.password);
+        fetch(`http://localhost:3001/login?username=${this.state.username}&u_password=${this.state.password}`)
+       .then(response => response.json())
+       .then(response => {
+        this.setState({user: response});
 
-        this.setState({buttonEnabled: false});
-
-        console.log("submit")
-
+       })
+       .catch(e => {
+         console.log(e);
+         return e;
+       })
     }
+
 
     render() {
 

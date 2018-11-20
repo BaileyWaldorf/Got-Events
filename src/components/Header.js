@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap'
 // import Login from 'process.env.PUBLIC_URL + /Login';
 
 class Header extends Component {
@@ -17,11 +16,9 @@ class Header extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onClick={()=>console.log(this.state)} style={{display:"flex", flexDirection:"row"}}>
-                      <LinkContainer to="process.env.PUBLIC_URL + /Login">
                         <NavItem eventKey={1}>
                             Create
                         </NavItem>
-                      </LinkContainer>
                         <NavItem eventKey={2} href="#">
                             My Events
                         </NavItem>
