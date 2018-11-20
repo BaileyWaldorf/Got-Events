@@ -8,15 +8,15 @@ app.use(bodyParser.json())
 // https://github.com/mysqljs/mysql
 // https://expressjs.com/en/guide/routing.html
 const connection = mysql.createConnection({
-  host     : '35.196.8.224',
-  user     : 'root',
-  password : '123',
-  database : 'got_events_database'
+    host     : '35.196.8.224',
+    user     : 'root',
+    password : '123',
+    database : 'got_events_database'
 });
 
 connection.connect(function(err) {
-  if (err) throw err
-  console.log('You are now connected...')
+    if (err) throw err
+    console.log('You are now connected...')
 })
 
 // for testing if server is running
