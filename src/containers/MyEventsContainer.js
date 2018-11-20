@@ -9,17 +9,7 @@ export default class MyEventsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            publicEvents: [
-                {name: "Event Title 1", description: description, date: date},
-                {name: "Event Title 2", description: description, date: date},
-                {name: "Event Title 3", description: description, date: date},
-                {name: "Event Title 4", description: description, date: date},
-                {name: "Event Title 5", description: description, date: date},
-                {name: "Event Title 6", description: description, date: date},
-                {name: "Event Title 7", description: description, date: date},
-                {name: "Event Title 8", description: description, date: date},
-                {name: "Event Title 9", description: description, date: date},
-            ],
+            publicEvents: [],
             privateEvents: [],
             RSOEvents: [],
             showPublicEvents: true,
@@ -29,9 +19,9 @@ export default class MyEventsContainer extends Component {
             events: []
         };
 
-        // fetch('http://localhost:3001/publicevents')
-        // .then(response => response.text())
-        // .then(response => (this.setState({publicEvents: response}, () => {console.log(this.state.publicEvents)})))
+        fetch('http://localhost:3001/public-events')
+        .then(response => response.text())
+        .then(response => (this.setState({publicEvents: response}, () => {console.log(this.state.publicEvents)})))
         //
         // fetch('http://localhost:3001/privateevents')
         // .then(response => response.text())
@@ -53,9 +43,6 @@ export default class MyEventsContainer extends Component {
     }
 
     selectEvent = (index) => {
-        fetch("http://localhost:3001/insert-user?username=bailey&password=password&email=bwaldorf@knights.ucf.edu&university=UCF&u_type=0")
-        .then(res => res.JSON());
-        .then
         this.setState({selectedEvent: index})
     }
 

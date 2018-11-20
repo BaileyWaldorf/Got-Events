@@ -18,7 +18,6 @@ export default class EventInfoContainer extends React.Component {
                     ? null
                     : <EventInfoHeader event={state.events[this.props.index]}/>
                 }
-                {state.publicEvents[state.selectedEvent].name}
                 <MapContainer />
             </div>
         );
