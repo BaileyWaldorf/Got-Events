@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import EventsContainer from './EventsContainer';
 import EventInfoContainer from './EventInfoContainer';
+import Header from '../components/Header';
+import { throws } from 'assert';
 
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 const date = "April 20th, 2019"
@@ -10,15 +12,13 @@ export default class MyEventsContainer extends Component {
         super(props);
         this.state = {
             publicEvents: [
-                {name: "Event Title 1", description: description, date: date},
-                {name: "Event Title 2", description: description, date: date},
-                {name: "Event Title 3", description: description, date: date},
-                {name: "Event Title 4", description: description, date: date},
-                {name: "Event Title 5", description: description, date: date},
-                {name: "Event Title 6", description: description, date: date},
-                {name: "Event Title 7", description: description, date: date},
-                {name: "Event Title 8", description: description, date: date},
-                {name: "Event Title 9", description: description, date: date},
+                { name: "Event Title 1", description: description, date: date, address: "University of Central Florida",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 2", description: description, date: date, address: "Eiffel Tower",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 3", description: description, date: date, address: "Statue of Librerty",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 4", description: description, date: date, address: "Disney World",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 5", description: description, date: date, address: "Universal Studios",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 6", description: description, date: date, address: "Chicago, Illinois",  time: "1:00 PM", rating: 3 },
+                { name: "Event Title 7", description: description, date: date, address: "New York City",  time: "1:00 PM", rating: 3 },
             ],
             privateEvents: [],
             RSOEvents: [],
@@ -46,21 +46,20 @@ export default class MyEventsContainer extends Component {
         console.log("myeventscontainer mounted")
         fetch('https://events.ucf.edu/upcoming/feed.json')
         .then(response => response.json())
-        .then(response => (this.setState({events: response}, () => {console.log(this.state.events)})))
+        .then(response => (this.setState({events: response}, () => {console.log("events", this.state.events)})))
         .catch(e => {
             console.log(e)
         })
     }
 
     selectEvent = (index) => {
-        fetch("http://localhost:3001/insert-user?username=bailey&password=password&email=bwaldorf@knights.ucf.edu&university=UCF&u_type=0")
-        .then(res => res.JSON());
-        this.setState({selectedEvent: index})
+        this.setState({ selectedEvent: index })
     }
 
     render() {
         return (
             <div className="my-events-container">
+                <Header></Header>
                 <EventsContainer state={this.state} selectEvent={this.selectEvent}/>
                 <EventInfoContainer state={this.state} index={this.state.selectedEvent}/>
             </div>

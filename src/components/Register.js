@@ -7,66 +7,59 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            rePassword: '',
-            school: '',
-            location: '',
-            description: '',
+            email: '',
+            university: '',
+            u_type: '',
             buttonEnabled: true,
-            IsSuperAdmin: 'hidden',
-            schoolPlaceholder: 'school',
-            buttonColor1: 'lightslategray',
-            buttonColor2: 'lightslategray',
-            buttonColor3: 'lightslategray',
-            failedlLogin: 'hidden',
-            authenticated: ''
-
+            authenticated: 'false'
         }
+
     }
 
     handleChangeLogin = (event) => {
-        this.setState({ username: event.target.value });
+        this.setState({username: event.target.value});
     }
 
     handleChangePassword = (event) => {
-        this.setState({ password: event.target.value });
+        this.setState({password: event.target.value});
     }
 
-    handleChangerePassword = (event) => {
-        this.setState({ rePassword: event.target.value });
+    handleChangeEmail = (event) => {
+        this.setState({ email: event.target.value });
     }
 
-    handleChangeSchool = (event) => {
-        this.setState({ school: event.target.value });
+    handleChangeUniversity = (event) => {
+        this.setState({ university: event.target.value });
     }
 
-    handleChangeLocation = (event) => {
-        this.setState({ location: event.target.value });
+    handleChangeUserType = (event) => {
+        this.setState({ u_type: event.target.value });
+        this.setState({ buttonEnabled: false });
     }
 
-    handleChangeDescription = (event) => {
-        this.setState({ description: event.target.value });
-    }
+    registerUser = () => {
+        console.log(this.state.username);
+        console.log(this.state.password);
+        console.log(this.state.email);
+        console.log(this.state.university);
+        console.log(this.state.u_type);
 
-    handleSubmit = (event) => {
-        //let temp_usrname = this.state.username;
-        //let temp_passwrd = this.state.password;
+        fetch('http://localhost:3001/insert-user', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                u_password: this.state.password,
+                email: this.state.email,
+                university: this.state.university,
+                u_type: this.state.u_type,
+            }),
+        });
 
         this.setState({ buttonEnabled: false });
-
-        console.log("submit")
-
-    }
-
-    button1Click = (event) => {
-        this.setState({ buttonColor1: 'black', buttonColor2: 'lightslategray', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden' })
-    }
-
-    button2Click = (event) => {
-        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'black', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden' })
-    }
-
-    button3Click = (event) => {
-        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'lightslategray', buttonColor3: 'black', schoolPlaceholder: 'Create school', IsSuperAdmin: 'visible' })
     }
 
     render() {
@@ -75,41 +68,32 @@ export default class Login extends Component {
 
         return (
             <div>
-                <div>
-                    
-                    <div className="LoginPage">
-                        <div className="LoginContainer">
-                            <h1 style={{ color: "white", marginTop: '5%', paddingBottom: '15%' }}>Register</h1>
-                            <div>
-                                <input onChange={this.handleChangeLogin} className="LoginInput" placeholder="Username" type='text'></input>
-                            </div>
-                            <div>
-                                <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Password" type='password'></input>
-                            </div>
-                            <div>
-                                <input onChange={this.handleChangerePassword} className="LoginInput" placeholder="Confirm Password" type='password'></input>
-                            </div>
-                            <div style={{ marginTop: '4%' }}>
-                                <button onClick={this.button1Click} style={{ backgroundColor: this.state.buttonColor1, borderWidth: '1px', width: '80px', height: '30px', outlineWidth: '0', alignContent: 'center' }}>Student</button>
-                                <button onClick={this.button2Click} style={{ backgroundColor: this.state.buttonColor2, borderWidth: '1px', width: '80px', height: '30px', outlineWidth: '0', alignContent: 'center' }}>Admin</button>
-                                <button onClick={this.button3Click} style={{ backgroundColor: this.state.buttonColor3, borderWidth: '1px', width: '100px', height: '30px', outlineWidth: '0', alignContent: 'center' }}>SuperAdmin</button>
-                            </div>
-                            <div>
-                                <input onChange={this.handleChangeSchool} className="LoginInput" placeholder={this.state.schoolPlaceholder}></input> {/*School(all of them), super: school location, description */}
-                            </div>
-                            <div style={{ visibility: this.state.IsSuperAdmin }}>
-                                <input onChange={this.handleChangeLocation} className="LoginInput" placeholder="Location"></input>
-                            </div>
-                            <div style={{ visibility: this.state.IsSuperAdmin }}>
-                                <input onChange={this.handleChangeDescription} className="LoginInput" placeholder="Description"></input>
-                            </div>
-                            <div style={{ marginTop: '8%', visibility: this.state.failedlLogin }}>FAILED</div>
-                            <div>
-                                <button onClick={this.handleSubmit} className="LoginButton" style={{ marginTop: "0%" }}>Register</button>
-                            </div>
-                        </div>
+            <div>
+                <Header></Header>
+            <div className="LoginPage">
+                <div className="LoginContainer">
+                    <h1 style={{color:"white", marginTop:'5%', paddingBottom:'15%'}}>Register</h1>
+                    <div>
+                        <input onChange={this.handleChangeLogin} className="LoginInput" placeholder="Username" type='text'></input>
+                    </div>
+                    <div>
+                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Password" type='password'></input>
+                    </div>
+                    <div>
+                        <input onChange={this.handleChangeEmail} className="LoginInput" placeholder="Email" type='email'></input>
+                    </div>
+                    <div>
+                        <input onChange={this.handleChangeUniversity} className="LoginInput" placeholder="University"></input>
+                    </div>
+                    <div>
+                        <input onChange={this.handleChangeUserType} className="LoginInput" placeholder="User Type "></input>
+                    </div>
+                    <div>
+                        <button onClick={this.registerUser}  className="LoginButton" style={{marginTop:"35%"}}>Register</button>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         );
     }

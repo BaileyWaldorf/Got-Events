@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-// import Login from 'process.env.PUBLIC_URL + /Login';
-
+import { Link } from 'react-router-dom';
 class Header extends Component {
 
 
@@ -15,27 +13,26 @@ class Header extends Component {
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Navbar.Collapse>
-                    <Nav onClick={()=>console.log(this.state)} style={{display:"flex", flexDirection:"row"}}>
-                        <NavItem eventKey={1}>
-                            Create
+                    <Nav style={{display:"flex", flexDirection:"row"}}>
+                        <NavItem eventKey={1} href="#">
+                            <Link to='/createEvents' >Create</Link>
                         </NavItem>
                         <NavItem eventKey={2} href="#">
-                            My Events
+                            <Link to='/myEvents' >My Events</Link>
                         </NavItem>
                         <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}>My Events</MenuItem>
-                            <MenuItem eventKey={3.2}>My Organizations</MenuItem>
-                            <MenuItem eventKey={3.3}>Account</MenuItem>
+                            <MenuItem eventKey={3.1}>My Organizations</MenuItem>
+                            <MenuItem eventKey={3.2}>Account</MenuItem>
                             <MenuItem divider={true}/>
                             <MenuItem eventKey={3.3}>Sign Out</MenuItem>
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight={true}>
                         <NavItem eventKey={1} href="#">
-                            Login
+                            <Link to={'/'}>Login</Link>
                         </NavItem>
                         <NavItem eventKey={2} href="#">
-                            Register
+                            <Link to={'register'}>Register</Link>
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>

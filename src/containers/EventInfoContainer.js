@@ -14,12 +14,29 @@ export default class EventInfoContainer extends React.Component {
         let state = this.props.state;
         return (
             <div className="event-info-container">
-                {state.events[this.props.index] === undefined
+                {state.events[state.selectedEvent] === undefined
                     ? null
-                    : <EventInfoHeader event={state.events[this.props.index]}/>
+                    : <EventInfoHeader event={state.events[state.selectedEvent]}/>
                 }
-                {state.publicEvents[state.selectedEvent].name}
-                <MapContainer />
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : state.events[state.selectedEvent].title
+                }
+
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : console.log("Current address of selected: " + state.events[state.selectedEvent].location)
+                }
+
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    : console.log("Current address of selected: " + state.selectedEvent)
+                }
+
+                {state.events[state.selectedEvent] === undefined
+                    ? null
+                    :
+                    <MapContainer address={state.events[state.selectedEvent].location}/>}
             </div>
         );
     }
