@@ -39,7 +39,7 @@ app.get('/rso-events', function (req, res) {
     var query = `
         SELECT DISTINCT *
         FROM events, rso_members
-        WHERE rso_members.username = '${req.body.username}' and rso_members.rso_id = events.rso_id;
+        WHERE rso_members.username = '${req.query.username}' and rso_members.rso_id = events.rso_id;
     `;
 
     connection.query(query, function (error, results, fields) {
@@ -84,7 +84,7 @@ app.get('/get-comments', function (req, res) {
     var query = `
         SELECT *
         FROM comments
-        WHERE comments.event = ${req.body.event};
+        WHERE comments.event = ${req.query.event};
     `;
 
     connection.query(query, function (error, results, fields) {
@@ -100,7 +100,7 @@ app.get('/login', function (req, res) {
     var query = `
         SELECT *
         FROM user
-        WHERE user.username = '${req.body.username}' AND user.u_password = '${req.body.u_password}';
+        WHERE user.username = '${req.query.username}' AND user.u_password = '${req.query.u_password}';
     `;
 
     connection.query(query, function (error, results, fields) {
