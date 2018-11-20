@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header'
-
+import { Link } from 'react-router-dom';
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -76,7 +76,7 @@ export default class Login extends Component {
         return (
             <div>
                 <div>
-                    
+                    <Header></Header>
                     <div className="LoginPage">
                         <div className="LoginContainer">
                             <h1 style={{ color: "white", marginTop: '5%', paddingBottom: '15%' }}>Register</h1>
@@ -105,7 +105,7 @@ export default class Login extends Component {
                             </div>
                             <div style={{ marginTop: '8%', visibility: this.state.failedlLogin }}>FAILED</div>
                             <div>
-                                <button onClick={this.handleSubmit} className="LoginButton" style={{ marginTop: "0%" }}>Register</button>
+                                <Link to={'/myEvents'}><button onClick={this.handleSubmit} className="LoginButton" style={{ marginTop: "0%" }}>Register</button></Link>
                             </div>
                         </div>
                     </div>
