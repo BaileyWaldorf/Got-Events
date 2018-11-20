@@ -7,9 +7,13 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            email: '',
+            university: '',
+            u_type: '',
             buttonEnabled: true,
             authenticated: 'false'
         }
+
     }
 
     handleChangeLogin = (event) => {
@@ -20,14 +24,42 @@ export default class Login extends Component {
         this.setState({password: event.target.value});
     }
 
-    handleSubmit = (event) => {
-        //let temp_usrname = this.state.username;
-        //let temp_passwrd = this.state.password;
-        
-        this.setState({buttonEnabled: false});
+    handleChangeEmail = (event) => {
+        this.setState({ email: event.target.value });
+    }
 
-        console.log("submit")
+    handleChangeUniversity = (event) => {
+        this.setState({ university: event.target.value });
+    }
 
+    handleChangeUserType = (event) => {
+        this.setState({ u_type: event.target.value });
+        this.setState({ buttonEnabled: false });
+    }
+
+    registerUser = () => {
+        console.log(this.state.username);
+        console.log(this.state.password);
+        console.log(this.state.email);
+        console.log(this.state.university);
+        console.log(this.state.u_type);
+
+        fetch('http://localhost:3001/insert-user', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                u_password: this.state.password,
+                email: this.state.email,
+                university: this.state.university,
+                u_type: this.state.u_type,
+            }),
+        });
+
+        this.setState({ buttonEnabled: false });
     }
 
     render() {
@@ -48,16 +80,16 @@ export default class Login extends Component {
                         <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Password" type='password'></input>
                     </div>
                     <div>
-                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Confirm Password" type='password'></input>
+                        <input onChange={this.handleChangeEmail} className="LoginInput" placeholder="Email" type='email'></input>
                     </div>
                     <div>
-                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="School"></input>
+                        <input onChange={this.handleChangeUniversity} className="LoginInput" placeholder="University"></input>
                     </div>
                     <div>
-                        <input onChange={this.handleChangePassword} className="LoginInput" placeholder="User Type "></input>
+                        <input onChange={this.handleChangeUserType} className="LoginInput" placeholder="User Type "></input>
                     </div>
                     <div>
-                        <button onClick={this.handleSubmit}  className="LoginButton" style={{marginTop:"35%"}}>Register</button>
+                        <button onClick={this.registerUser}  className="LoginButton" style={{marginTop:"35%"}}>Register</button>
                     </div>
                 </div>
             </div>
