@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+let md5 = require('js-md5');
 
 export default class Login extends Component {
     constructor(props) {
@@ -49,9 +50,12 @@ export default class Login extends Component {
     handleSubmit = (event) => {
 
         console.log("Clicked")
+        let hashpass = md5(this.state.password)
+        console.log(hashpass)
+
         //let temp_usrname = this.state.username;
         //let temp_passwrd = this.state.password;
-        if(this.state.userType == 0)
+        if(this.state.userType === 0)
         {
           fetch('http://localhost:3001/create-university', {
             method: 'POST',
@@ -75,7 +79,7 @@ export default class Login extends Component {
           },
           body: JSON.stringify({
             username: this.state.username,
-            password: this.state.password,
+            password: hashpass,
             email: this.state.email,
             university: this.state.school,
             u_type: this.state.userType,
