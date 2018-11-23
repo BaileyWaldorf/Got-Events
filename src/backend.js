@@ -80,7 +80,7 @@ app.get('/private-events', function (req, res) {
 
 // pull comments from an event
 app.get('/get-comments', function (req, res) {
-    console.log("pulling all coments for this event...");
+    console.log("pulling all comments for this event...");
     var query = `
         SELECT *
         FROM comments
@@ -88,7 +88,10 @@ app.get('/get-comments', function (req, res) {
     `;
 
     connection.query(query, function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            console.log("comment error: ", error)
+            throw error;
+        }
         res.send(results);
     });
 });

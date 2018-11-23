@@ -15,7 +15,8 @@ export default class MyEventsContainer extends Component {
             showPublicEvents: false,
             showPrivateEvents: false,
             showRSOEvents: false,
-            selectedEvent: 0
+            selectedEvent: 0,
+            comments: []
         };
         //
         // fetch('http://localhost:3001/privateevents')
@@ -63,28 +64,46 @@ export default class MyEventsContainer extends Component {
 
     showPublicEvents = () => {
         console.log("now showing public events");
-        this.setState({showPublicEvents: true, showPrivateEvents: false, showRSOEvents: false})
+        this.setState({showPublicEvents: true, showPrivateEvents: false, showRSOEvents: false, selectedEvent: 0})
     }
 
     showPrivateEvents = () => {
         console.log("now showing private events");
-        this.setState({showPublicEvents: false, showPrivateEvents: true, showRSOEvents: false})
+        this.setState({showPublicEvents: false, showPrivateEvents: true, showRSOEvents: false, selectedEvent: 0})
     }
 
     showRSOEvents = () => {
         console.log("now showing RSO events");
-        this.setState({showPublicEvents: false, showPrivateEvents: false, showRSOEvents: true})
+        this.setState({showPublicEvents: false, showPrivateEvents: false, showRSOEvents: true, selectedEvent: 0})
     }
 
     selectEvent = (index) => {
-        this.setState({selectedEvent: index})
+        var eventID = 0;
+        this.setState({selectedEvent: index}, () => {
+            console.log("fetching comments");
+
+            if(this.state.showPublicEvents) {
+                eventID = this.state.publicEvents[this.state.selectedEvent].id
+            } else if(this.state.showPrivateEvents) {
+                eventID = this.state.privateEvents[this.state.selectedEvent].id
+            } else if(this.state.showRSOEvents) {
+                eventID = this.state.RSOEvents[this.state.selectedEvent].id
+            }
+
+            fetch(`http://localhost:3001/get-comments?event=${eventID}`)
+            .then(response => response.json())
+            .then(response => (this.setState({comments: response}, () => {console.log('comments: ', this.state.comments)})))
+            .catch(e => {
+                console.log("Comment error:", e)
+            })
+        })
     }
 
     render() {
         return (
             <div className="my-events-container">
                 <EventsContainer state={this.state} selectEvent={this.selectEvent} showPublicEvents={this.showPublicEvents} showPrivateEvents={this.showPrivateEvents} showRSOEvents={this.showRSOEvents}/>
-                <EventInfoContainer state={this.state} index={this.state.selectedEvent}/>
+                <EventInfoContainer state={this.state} authenticated={this.props.state.authenticated} index={this.state.selectedEvent} comments={this.state.comments}/>
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 export default class Login extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ export default class Login extends Component {
             buttonColor2: 'lightslategray',
             buttonColor3: 'lightslategray',
             failedlLogin: 'hidden',
+            redirect: false
         }
     }
 
@@ -64,6 +66,12 @@ export default class Login extends Component {
               location: this.state.location,
               description: this.state.description,
             }),
+          })
+          .then(() => {
+              this.setState({redirect: true})
+          })
+          .catch(err => {
+              console.log(err)
           });
         }
 
@@ -80,6 +88,12 @@ export default class Login extends Component {
             university: this.state.school,
             u_type: this.state.userType,
           }),
+        })
+        .then(() => {
+            this.setState({redirect: true})
+        })
+        .catch(err => {
+            console.log(err)
         });
         console.log("submit")
 
@@ -102,6 +116,9 @@ export default class Login extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to="/" />;
+        }
 
         return (
             <div>

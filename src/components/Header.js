@@ -18,11 +18,14 @@ class Header extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav style={{display:"flex", flexDirection:"row"}}>
+                        <LinkContainer to="/my-events">
+                            <NavItem>My Events</NavItem>
+                        </LinkContainer>
                         <LinkContainer to="/create-event">
                             <NavItem>Create Event</NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/my-events">
-                            <NavItem>My Events</NavItem>
+                        <LinkContainer to="/create-rso">
+                            <NavItem>Create RSO</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/join-rso">
                             <NavItem>Join RSO</NavItem>

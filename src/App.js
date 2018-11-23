@@ -7,6 +7,7 @@ import Login from'./components/Login';
 import Register from './components/Register';
 import ProfilePage from './components/ProfilePage';
 import JoinRSO from './components/JoinRSO';
+import CreateRSO from './components/CreateRSO';
 import CreateEvent from './components/CreateEvent';
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
 
     handleLogout = () => {
         console.log("user has logged out!");
-        this.setState({authenticated: false})
+        this.setState({authenticated: false, user: []})
     }
 
     render() {
@@ -51,6 +52,9 @@ class App extends Component {
                         )} />
                         <Route path="/join-rso" render={(props) => (
                             <JoinRSO {...props} state={this.state} />
+                        )} />
+                        <Route path="/create-rso" render={(props) => (
+                            <CreateRSO {...props} state={this.state} />
                         )} />
                         <Route path="/create-event" render={(props) => (
                             <CreateEvent {...props} state={this.state} />

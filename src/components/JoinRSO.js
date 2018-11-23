@@ -54,7 +54,7 @@ export default class JoinRSO extends Component {
             <div className="LoginPage">
                 {this.props.state.authenticated
                     ? this.content()
-                    : <h2 style={{paddingTop: '200px'}}>Please Login to create an event!</h2>
+                    : <h2 style={{paddingTop: '200px'}}>Please Login to join an RSO!</h2>
                 }
             </div>
         );

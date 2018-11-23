@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 export default class Login extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ export default class Login extends Component {
             username: '',
             password: '',
             authenticated: false,
-            user: []
+            user: [],
+            redirect: false
         }
     }
 
@@ -29,7 +31,7 @@ export default class Login extends Component {
             console.log("user: ", response)
             this.setState({user: response}, () => {
                 if(this.state.user !== []) {
-                    this.setState({authenticated: true}, () => {
+                    this.setState({authenticated: true, redirect: true}, () => {
                         console.log("logged in: ", this.state.authenticated)
                         this.props.handleLogin(this.state.user);
                     });
@@ -42,6 +44,9 @@ export default class Login extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to="/" />;
+        }
 
         return (
             <div className="LoginPage">

@@ -5,7 +5,7 @@ export default class ProfilePage extends Component {
         super(props);
     }
 
-    render() {
+    content = () => {
         var username = this.props.state.user[0] !== undefined ? this.props.state.user[0].username : null
         var email = this.props.state.user[0] !== undefined ? this.props.state.user[0].email : null
         var university = this.props.state.user[0] !== undefined ? this.props.state.user[0].university : null
@@ -31,6 +31,17 @@ export default class ProfilePage extends Component {
                         User type: {user}
                     </div>
                 </div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                {this.props.state.authenticated
+                    ? this.content()
+                    : <h2 style={{paddingTop: '200px'}}>Please Login to view your profile!</h2>
+                }
             </div>
         );
     }
