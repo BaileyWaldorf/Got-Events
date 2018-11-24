@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Header from './Header'
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
+var md5 = require('js-md5');
+
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
+            email: '',
+            userType: '',
             password: '',
             rePassword: '',
             school: '',
@@ -18,8 +21,7 @@ export default class Login extends Component {
             buttonColor2: 'lightslategray',
             buttonColor3: 'lightslategray',
             failedlLogin: 'hidden',
-            authenticated: ''
-
+            redirect: false
         }
     }
 
@@ -48,40 +50,88 @@ export default class Login extends Component {
     }
 
     handleSubmit = (event) => {
-        //let temp_usrname = this.state.username;
-        //let temp_passwrd = this.state.password;
 
-        this.setState({ buttonEnabled: false });
+        console.log('Submitted' + md5(this.state.password));
+        if(this.state.userType == 0)
+        {
+          fetch('http://localhost:3001/create-university', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: this.state.school,
+              location: this.state.location,
+              description: this.state.description,
+            }),
+          })
+        .then(() => {
+              this.setState({redirect: true})
+          })
+          .catch(err => {
+              console.log(err)
+          });
+        }
+
+        fetch('http://localhost:3001/register', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.state.username,
+            password: md5(this.state.password),
+            email: this.state.email,
+            university: this.state.school,
+            u_type: this.state.userType,
+          }),
+        })
+        .then(() => {
+            this.setState({redirect: true})
+        })
+        .catch(err => {
+            console.log(err)
+        });
 
         console.log("submit")
 
     }
 
+    handleChangeEmail = (event) => {
+        this.setState({email: event.target.value})
+    }
+
     button1Click = (event) => {
-        this.setState({ buttonColor1: 'black', buttonColor2: 'lightslategray', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden' })
+        this.setState({ buttonColor1: 'black', buttonColor2: 'lightslategray', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden', userType:2 })
     }
 
     button2Click = (event) => {
-        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'black', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden' })
+        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'black', buttonColor3: 'lightslategray', schoolPlaceholder: 'school', IsSuperAdmin: 'hidden', userType:1 })
     }
 
     button3Click = (event) => {
-        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'lightslategray', buttonColor3: 'black', schoolPlaceholder: 'Create school', IsSuperAdmin: 'visible' })
+        this.setState({ buttonColor1: 'lightslategray', buttonColor2: 'lightslategray', buttonColor3: 'black', schoolPlaceholder: 'Create school', IsSuperAdmin: 'visible', userType:0 })
     }
 
     render() {
-
-        const registerLink = <a href={"RegisterPage"}>Register here</a>
+        if (this.state.redirect) {
+            return <Redirect push to="/" />;
+        }
 
         return (
             <div>
                 <div>
-                    <Header></Header>
+
                     <div className="LoginPage">
                         <div className="LoginContainer">
-                            <h1 style={{ color: "white", marginTop: '5%', paddingBottom: '15%' }}>Register</h1>
+                            <h1 style={{ color: "white", marginTop: '5%', paddingBottom: '5%' }}>Register</h1>
                             <div>
                                 <input onChange={this.handleChangeLogin} className="LoginInput" placeholder="Username" type='text'></input>
+                            </div>
+                            <div>
+                                <input onChange={this.handleChangeEmail} className="LoginInput" placeholder="email" type='text'></input>
                             </div>
                             <div>
                                 <input onChange={this.handleChangePassword} className="LoginInput" placeholder="Password" type='password'></input>
@@ -103,9 +153,9 @@ export default class Login extends Component {
                             <div style={{ visibility: this.state.IsSuperAdmin }}>
                                 <input onChange={this.handleChangeDescription} className="LoginInput" placeholder="Description"></input>
                             </div>
-                            <div style={{ marginTop: '8%', visibility: this.state.failedlLogin }}>FAILED</div>
+                            <div style={{ marginTop: '5%', visibility: this.state.failedlLogin }}>FAILED</div>
                             <div>
-                                <Link to={'/myEvents'}><button onClick={this.handleSubmit} className="LoginButton" style={{ marginTop: "0%" }}>Register</button></Link>
+                                <button onClick={this.handleSubmit} className="LoginButton" style={{ marginTop: "0%" }}>Register</button>
                             </div>
                         </div>
                     </div>

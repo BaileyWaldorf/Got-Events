@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
+import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 // import Login from 'process.env.PUBLIC_URL + /Login';
 
 class Header extends Component {
-
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
-            <Navbar inverse={true} collapseOnSelect={true}>
+            <Navbar inverse={true} fluid collapseOnSelect={true}>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#brand">Got Events?</a>
+                        <Link to="/">Got Events?</Link>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav style={{display:"flex", flexDirection:"row"}}>
-                        <NavItem eventKey={1} href="#">
-                            <Link to='/createEvents' >Create</Link>
-                        </NavItem>
-                        <NavItem eventKey={2} href="#">
-                            <Link to='/myEvents' >My Events</Link>
-                        </NavItem>
-                        <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}><Link to={'/profile'}>Account</Link></MenuItem>
-                            <MenuItem divider={true}/>
-                            <MenuItem eventKey={3.2}><Link to={'/'}>Sign Out</Link></MenuItem>
-                        </NavDropdown>
+                        <LinkContainer to="/my-events">
+                            <NavItem>My Events</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/create-event">
+                            <NavItem>Create Event</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/create-rso">
+                            <NavItem>Create RSO</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/join-rso">
+                            <NavItem>Join RSO</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/profile">
+                            <NavItem>Profile</NavItem>
+                        </LinkContainer>
                     </Nav>
-                    <Nav pullRight={true}>
-                        <NavItem eventKey={1} href="#">
-                            <Link to={'/'}>Login</Link>
-                        </NavItem>
-                        <NavItem eventKey={2} href="#">
-                            <Link to={'/register'}>Register</Link>
-                        </NavItem>
-                    </Nav>
+                    {!this.props.authenticated
+                        ? <Nav pullRight={true}>
+                            <LinkContainer to="/register">
+                                <NavItem>Register</NavItem>
+                            </LinkContainer>
+                            <LinkContainer to="/login">
+                                <NavItem>Login</NavItem>
+                            </LinkContainer>
+                        </Nav>
+                    : <Nav pullRight={true}>
+                        <NavItem onClick={this.props.handleLogout}>Logout</NavItem>
+                    </Nav>}
                 </Navbar.Collapse>
             </Navbar>
         );

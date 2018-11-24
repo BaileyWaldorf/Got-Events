@@ -1,42 +1,45 @@
 import React from 'react';
 import EventInfoHeader from '../components/EventInfoHeader';
 import MapContainer from '../components/MapContainer';
+import Comments from '../components/Comments';
 
 export default class EventInfoContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            placeholder: 'blah'
-        };
     }
 
     render() {
         let state = this.props.state;
+        console.log("authenticated?: ", this.props.authenticated)
         return (
             <div className="event-info-container">
-                {state.events[state.selectedEvent] === undefined
+                {state.showPublicEvents === false
                     ? null
-                    : <EventInfoHeader event={state.events[state.selectedEvent]} />
+                    : <div style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', position: 'relative'}}>
+                        {console.log("public event selected:", state.publicEvents[this.props.index])}
+                        <EventInfoHeader event={state.publicEvents[this.props.index]}/>
+                        <MapContainer event={state.publicEvents[this.props.index]}/>
+                        <Comments comments={this.props.comments} event={state.publicEvents[this.props.index]}/>
+                    </div>
                 }
-                {state.events[state.selectedEvent] === undefined
-                    ? null
-                    : state.events[state.selectedEvent].title
+                {(state.showPrivateEvents === true && this.props.authenticated === true)
+                    ? <div style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', position: 'relative'}}>
+                        {console.log("private event selected:", state.privateEvents[this.props.index])}
+                        <EventInfoHeader event={state.privateEvents[this.props.index]}/>
+                        <MapContainer event={state.privateEvents[this.props.index]}/>
+                        <Comments comments={this.props.comments} event={state.privateEvents[this.props.index]}/>
+                    </div>
+                    : null
                 }
-
-                {state.events[state.selectedEvent] === undefined
-                    ? null
-                    : console.log("Current address of selected: " + state.events[state.selectedEvent].location)
+                {(state.showRSOEvents === true && this.props.authenticated === true)
+                    ? <div style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', position: 'relative'}}>
+                        {console.log("rso event selected:", state.RSOEvents[this.props.index])}
+                        <EventInfoHeader event={state.RSOEvents[this.props.index]}/>
+                        <MapContainer event={state.RSOEvents[this.props.index]}/>
+                        <Comments comments={this.props.comments} event={state.RSOEvents[this.props.index]}/>
+                    </div>
+                    : null
                 }
-
-                {state.events[state.selectedEvent] === undefined
-                    ? null
-                    : console.log("Current address of selected: " + state.selectedEvent)
-                }
-
-                {state.events[state.selectedEvent] === undefined
-                    ? null
-                    :
-                    <MapContainer address={state.events[state.selectedEvent].location} />}
             </div>
         );
     }

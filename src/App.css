@@ -34,6 +34,7 @@
 .eventCard {
     border-width: 0px;
     border-bottom-width: 1px;
+    border-top-width: 1px;
     border-color: black;
     background-color: #252930;
     padding: 20px;
@@ -141,4 +142,3 @@
     outline-width: 0;
     color: #CCC;
 }
-

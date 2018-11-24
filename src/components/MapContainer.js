@@ -6,95 +6,95 @@ let latitude;
 let longitude;
 
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey("AIzaSyBbHGz9WI9s7eneKyyCGxsP6bTMfc70ofM");
+Geocode.setApiKey("AIzaSyAcqmStOhHR_mCt-C2r6HUnTPiNIcS2OYU");
 
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
 
-export class MapContainer extends Component {
-  constructor(props){
-    super(props);
-    
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-      latitude: 0,
-      longitude: 0,
-      address:this.props.address
-    }    
-  }
-
-  componentWillReceiveProps(nextProps)
-  {
-    if(nextProps.address != this.props.address)
-    {
-      this.setState({address:nextProps.address});
-      this.onMapLoad(nextProps);
-    }
-  }
-
-  componentDidMount() {
-    this.onMapLoad(this.props);
-  }
-  
-  onMapLoad = (props) => {
-      Geocode.fromAddress(this.props.address).then(
+// Get latidude & longitude from address.
+const geocode = (address) => {
+    console.log("Address: ", address)
+    Geocode.fromAddress(address).then(
         response => {
             const { lat, lng } = response.results[0].geometry.location;
-
-            this.setState({
-              latitude: lat,
-              longitude: lng,
-              });
+            latitude = lat;
+            longitude = lng;
         },
         error => {
             console.error(error);
         }
-      );
+    );
+    let coords = {
+        lat: latitude,
+        lng: longitude
+    }
+    console.log(coords);
+    return coords;
+}
+
+export class MapContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+        };
     }
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+    onMarkerClick = (props, marker, e) =>
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
+    onMapClicked = (props) => {
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            })
+        }
+    };
+
+    componentDidMount() {
+        if(this.props.event !== undefined)
+            geocode(this.props.event.location)
     }
-  };
 
-  render() {
+    componentDidUpdate() {
+        if (this.props.event !== undefined)
+            geocode(this.props.event.location)
+    }
 
-    return (
-      <Map google={this.props.google}
-          center={{
-            lat: this.state.latitude,
-            lng: this.state.longitude
-          }}
-          zoom={15}
-          onClick={this.onMapClicked}
-      >
-        <Marker onClick={this.onMarkerClick}
-                name={this.props.address} 
-                position={{lat: this.state.latitude, lng: this.state.longitude}}/>
+    render() {
+        return (
+                <Map
+                    style={{width: '70%', height: '60%', position: 'relative', marginLeft: '15%', marginRight: '15%'}}
+                    google={this.props.google}
+                    onClick={this.onMapClicked}
+                    center={{lat: latitude, lng: longitude}}
+                    zoom={15}
+                >
+                    {this.props.event === undefined ?
+                    null :
+                    <Marker
+                        onClick={this.onMarkerClick}
+                        name={this.props.event.name}
+                        position={{lat: latitude, lng: longitude}}
+                    />}
 
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
-    )
-  }
+                    <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}>
+                        <div>
+                            <h1>{this.state.selectedPlace.name}</h1>
+                        </div>
+                    </InfoWindow>
+                </Map>
+        )
+    }
 }
 
 export default GoogleApiWrapper({
