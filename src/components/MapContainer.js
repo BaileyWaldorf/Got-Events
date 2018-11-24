@@ -59,11 +59,13 @@ export class MapContainer extends Component {
     };
 
     componentDidMount() {
-        geocode(this.props.event.location)
+        if(this.props.event !== undefined)
+            geocode(this.props.event.location)
     }
 
     componentDidUpdate() {
-        geocode(this.props.event.location)
+        if (this.props.event !== undefined)
+            geocode(this.props.event.location)
     }
 
     render() {
@@ -75,11 +77,13 @@ export class MapContainer extends Component {
                     center={{lat: latitude, lng: longitude}}
                     zoom={15}
                 >
+                    {this.props.event === undefined ?
+                    null :
                     <Marker
                         onClick={this.onMarkerClick}
                         name={this.props.event.name}
                         position={{lat: latitude, lng: longitude}}
-                    />
+                    />}
 
                     <InfoWindow
                         marker={this.state.activeMarker}

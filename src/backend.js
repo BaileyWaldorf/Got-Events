@@ -134,7 +134,7 @@ app.post('/create-event', function(req, res){
 
     var query = `
         INSERT INTO events (rso_id, name, category, description, event_time, location, contact_num, contact_email, rating, university_name, private)
-        VALUES (${req.body.rso_id}, '${req.body.name}', ${req.body.category}, '${req.body.description}', ${req.body.event_time}, '${req.body.location}',
+        VALUES (${req.body.rso_id}, '${req.body.name}', ${req.body.category}, '${req.body.description}', STR_TO_DATE("${req.body.event_time}","%Y-%m-%d  %H:%i:%s"), '${req.body.location}',
         '${req.body.contact_num}', '${req.body.contact_email}', ${req.body.rating}, '${req.body.university_name}', ${req.body.private});
     `;
 
@@ -211,6 +211,23 @@ app.post('/create-university', function(req, res){
     });
     res.send("success");
 });
+
+// create a new university
+app.post('/create-rso', function (req, res) {
+    console.log('body is ', req.body);
+
+    var query = `
+        INSERT INTO rsos (rso_name, description, admin, university, active)
+        VALUES ('${req.body.rso_name}', '${req.body.description}', '${req.body.admin}', '${req.body.university}', '${req.body.active}');
+    `;
+
+    connection.query(query, function (err, result) {
+        if (err) console.log("Uh oh:", err);
+        console.log("Created a university!");
+    });
+    res.send("success");
+});
+
 
 // deletes an RSO
 app.post('/delete-rso', function(req, res) {
