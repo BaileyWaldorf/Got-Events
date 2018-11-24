@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+var md5 = require('js-md5');
 
 export default class Login extends Component {
     constructor(props) {
@@ -50,9 +51,7 @@ export default class Login extends Component {
 
     handleSubmit = (event) => {
 
-        console.log("Clicked")
-        //let temp_usrname = this.state.username;
-        //let temp_passwrd = this.state.password;
+        console.log('Submitted' + md5(this.state.password));
         if(this.state.userType == 0)
         {
           fetch('http://localhost:3001/create-university', {
@@ -67,7 +66,7 @@ export default class Login extends Component {
               description: this.state.description,
             }),
           })
-          .then(() => {
+        .then(() => {
               this.setState({redirect: true})
           })
           .catch(err => {
@@ -83,7 +82,7 @@ export default class Login extends Component {
           },
           body: JSON.stringify({
             username: this.state.username,
-            password: this.state.password,
+            password: md5(this.state.password),
             email: this.state.email,
             university: this.state.school,
             u_type: this.state.userType,
@@ -95,6 +94,7 @@ export default class Login extends Component {
         .catch(err => {
             console.log(err)
         });
+
         console.log("submit")
 
     }

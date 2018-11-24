@@ -16,7 +16,7 @@ export default class CreateEventPage extends Component {
             category: 0,
             private: false,
             event_time: '1970-01-01 00:00:00',
-            rating: 0.0,
+            rating: 0,
             contact_num: '',
             rso_id: null
         }
@@ -27,7 +27,8 @@ export default class CreateEventPage extends Component {
       var email = this.props.state.user[0] !== undefined ? this.props.state.user[0].email : null
       var university = this.props.state.user[0] !== undefined ? this.props.state.user[0].university : null
       var userType = this.props.state.user[0] !== undefined ? this.props.state.user[0].u_type : null
-        fetch('http://localhost:3001/create-event', {
+
+      fetch('http://localhost:3001/create-event', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
