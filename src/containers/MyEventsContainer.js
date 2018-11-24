@@ -105,7 +105,7 @@ export default class MyEventsContainer extends Component {
         return (
             <div className="my-events-container">
                 <EventsContainer state={this.state} selectEvent={this.selectEvent} showPublicEvents={this.showPublicEvents} showPrivateEvents={this.showPrivateEvents} showRSOEvents={this.showRSOEvents}/>
-                <EventInfoContainer state={this.state} authenticated={this.props.state.authenticated} index={this.state.selectedEvent} comments={this.state.comments}/>
+                <EventInfoContainer username={this.props.state.user[0] !== undefined ? this.props.state.user[0].username : 'Bailey'} state={this.state} authenticated={this.props.state.authenticated} index={this.state.selectedEvent} comments={this.state.comments}/>
             </div>
         );
     }
