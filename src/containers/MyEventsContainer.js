@@ -45,7 +45,7 @@ export default class MyEventsContainer extends Component {
 
             fetch(`http://localhost:3001/private-events?university=${university}`)
             .then(response => response.json())
-            .then(response => (this.setState({privateEvents: response}, () => {console.log(this.state.privateEvents)})))
+            .then(response => (this.setState({privateEvents: response}, () => {console.log('private events: ', this.state.privateEvents)})))
             .catch(e => {
                 console.log(e)
             })
@@ -55,7 +55,7 @@ export default class MyEventsContainer extends Component {
             var username = this.props.state.user[0].username
             fetch(`http://localhost:3001/rso-events?username=${username}`)
             .then(response => response.json())
-            .then(response => (this.setState({RSOEvents: response}, () => {console.log(this.state.RSOEvents)})))
+            .then(response => (this.setState({RSOEvents: response}, () => {console.log('RSO event: ', this.state.RSOEvents)})))
             .catch(e => {
                 console.log(e)
             })

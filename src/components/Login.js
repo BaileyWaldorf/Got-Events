@@ -31,8 +31,11 @@ export default class Login extends Component {
     // }
 
     handleSubmit = (event) => {
-        console.log("Checking against" + md5(this.state.password))
-        fetch(`http://localhost:3001/login?username=${this.state.username}&u_password=${md5(this.state.password)}`)
+        var hashpass = md5(this.state.password)
+        console.log(hashpass)
+
+        console.log("login button clicked")
+        fetch(`http://localhost:3001/login?username=${this.state.username}&u_password=${hashpass}`)
         .then(response => response.json())
         .then(response => {
             console.log("user: ", response)

@@ -51,8 +51,13 @@ export default class Login extends Component {
 
     handleSubmit = (event) => {
 
-        console.log('Submitted' + md5(this.state.password));
-        if(this.state.userType == 0)
+        console.log("Clicked")
+        let hashpass = md5(this.state.password)
+        console.log(hashpass)
+
+        //let temp_usrname = this.state.username;
+        //let temp_passwrd = this.state.password;
+        if(this.state.userType === 0)
         {
           fetch('http://localhost:3001/create-university', {
             method: 'POST',
@@ -65,12 +70,6 @@ export default class Login extends Component {
               location: this.state.location,
               description: this.state.description,
             }),
-          })
-        .then(() => {
-              this.setState({redirect: true})
-          })
-          .catch(err => {
-              console.log(err)
           });
         }
 
@@ -82,19 +81,12 @@ export default class Login extends Component {
           },
           body: JSON.stringify({
             username: this.state.username,
-            password: md5(this.state.password),
+            password: hashpass,
             email: this.state.email,
             university: this.state.school,
             u_type: this.state.userType,
           }),
-        })
-        .then(() => {
-            this.setState({redirect: true})
-        })
-        .catch(err => {
-            console.log(err)
         });
-
         console.log("submit")
 
     }
